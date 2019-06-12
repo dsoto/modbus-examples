@@ -24,15 +24,9 @@ while 1:
     device_ID = 0x01   # identifier for the ASI controller to distinguish from other devices
 
     # query the device
-    # response = client.read_holding_registers(address, num_registers, unit=0x01)
-
-    # pull the data from the "deferred response handle"
-    # the reading is a 16-bit integer but we divide and get a floating point number
-    # reading = response.registers[0] / scale
-
     reading = client.read_holding_registers(address, num_registers, unit=0x01).registers[0]
 
-    # write to the console
+    # scale the reading and write it to the console
     print(reading/scale)
 
     # delay for one second
